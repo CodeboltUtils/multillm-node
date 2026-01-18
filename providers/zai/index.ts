@@ -11,7 +11,7 @@
 //         content: message.content || ''
 //       };
 //     }
-    
+
 //     if (message.role === 'assistant' && message.tool_calls) {
 //       return {
 //         role: 'assistant',
@@ -19,14 +19,14 @@
 //         tool_calls: message.tool_calls
 //       };
 //     }
-    
+
 //     if (message.role === 'system') {
 //       return {
 //         role: 'system',
 //         content: message.content || ''
 //       };
 //     }
-    
+
 //     return {
 //       role: 'user',
 //       content: message.content || ''
@@ -57,7 +57,7 @@
 //     this.apiKey = apiKey;
 //     this.apiEndpoint =  "https://api.z.ai/api/coding/paas/v4";
 //     this.provider = "openai";
-    
+
 //     this.options = { model, device_map, apiKey, apiEndpoint: this.apiEndpoint };
 //   }
 
@@ -149,7 +149,7 @@ function transformMessages(messages: ChatMessage[]): ChatCompletionMessageParam[
       };
       return functionMessage;
     }
-    
+
     if (message.role === 'assistant' && message.tool_calls) {
       const assistantMessage: ChatCompletionAssistantMessageParam = {
         role: 'assistant',
@@ -158,7 +158,7 @@ function transformMessages(messages: ChatMessage[]): ChatCompletionMessageParam[
       };
       return assistantMessage;
     }
-    
+
     if (message.role === 'system') {
       const systemMessage: ChatCompletionSystemMessageParam = {
         role: 'system',
@@ -166,7 +166,7 @@ function transformMessages(messages: ChatMessage[]): ChatCompletionMessageParam[
       };
       return systemMessage;
     }
-    
+
     const userMessage: ChatCompletionUserMessageParam = {
       role: 'user',
       content: message.content || ''
@@ -199,7 +199,7 @@ class ZAi implements LLMProvider {
     this.apiKey = apiKey;
     this.apiEndpoint = "https://api.z.ai/api/coding/paas/v4";
     this.provider = "zai";
-    
+
     this.options = { model, device_map, apiKey, apiEndpoint: this.apiEndpoint };
 
     if (this.options.apiEndpoint?.toLowerCase().includes("azure.com")) {
@@ -221,7 +221,7 @@ class ZAi implements LLMProvider {
       const completion = await this.client.chat.completions.create({
         // @ts-ignore
         messages: options.messages,
-        model:'glm-4.6', //||options.model || this.model || "glm-4.6",
+        model: 'glm-4.6', //||options.model || this.model || "glm-4.6",
         temperature: options.temperature,
         top_p: options.top_p,
         max_tokens: options.max_tokens,
@@ -238,9 +238,9 @@ class ZAi implements LLMProvider {
 
   async getModels(): Promise<any> {
     try {
-        return [{
-        id: 'glm-4.6',
-        name: 'glm-4.6',
+      return [{
+        id: 'glm-4.7',
+        name: 'glm-4.7',
         provider: 'zai',
         type: 'chat'
       }];
